@@ -1,5 +1,6 @@
 package com.acme.app1.controllers;
 
+import com.acme.app1.dto.EmployeeDto;
 import com.acme.app1.exceptions.EmployeeNotFoundException;
 import com.acme.app1.models.Employee;
 import com.acme.app1.services.EmployeeService;
@@ -27,7 +28,12 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
+/*
+    @GetMapping(value = "/employees/x")
+    public List<Employee> getAllEmployeesX() {
+        return employeeService.getEmployeesX();
+    }
+*/
     @GetMapping(value = "/employees")
     public List<Employee> getAllEmployees() {
         return employeeService.getAll();
