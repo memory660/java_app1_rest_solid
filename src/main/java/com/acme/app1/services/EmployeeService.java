@@ -30,13 +30,21 @@ public class EmployeeService implements IEmployee {
     public Optional<Employee> findByEmail(String email) {
         return employeeRepo.findByEmail(email);
     }
-    
+
 /*
     @Override
     public List<Employee> getEmployeesX() {
         return employeeRepo.findEmployeesX();
     }
 */
+
+    // custom
+    @Override
+    public List<Employee> getAllByLastname() {
+        return employeeRepo.findAllSortedByLastname();
+    }
+
+    // normally
     @Override
     public List<Employee> getAll() {
         return employeeRepo.findAll();

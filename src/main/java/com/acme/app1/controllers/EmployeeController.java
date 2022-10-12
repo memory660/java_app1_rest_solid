@@ -28,12 +28,21 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
 /*
     @GetMapping(value = "/employees/x")
     public List<Employee> getAllEmployeesX() {
         return employeeService.getEmployeesX();
     }
 */
+
+    // custom
+    @GetMapping(value = "/employees/x")
+    public List<Employee> getAllByLastname() {
+        return employeeService.getAllByLastname();
+    }
+
+    // normally
     @GetMapping(value = "/employees")
     public List<Employee> getAllEmployees() {
         return employeeService.getAll();

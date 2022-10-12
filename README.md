@@ -8,3 +8,4 @@ POST http://localhost:8080/api/employees
 "email": "email1@email.fr"
 }
 
+GET http://localhost:8080/api/employees/x

@@ -16,4 +16,6 @@ public interface IEmployee {
     Optional<Employee> findByEmail(String email);
     Employee save(Employee std);
     void deleteById(int id);
+    // custom
+    List<Employee> getAllByLastname();
 }
