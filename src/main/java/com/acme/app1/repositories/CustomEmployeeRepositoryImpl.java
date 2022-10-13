@@ -1,6 +1,5 @@
 package com.acme.app1.repositories;
 
-import com.acme.app1.dto.EmployeeDto;
 import com.acme.app1.models.Employee;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

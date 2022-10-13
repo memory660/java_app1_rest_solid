@@ -1,6 +1,6 @@
 package com.acme.app1.controllers;
 
-import com.acme.app1.dto.EmployeeDto;
+import com.acme.app1.dtos.EmployeeDto;
 import com.acme.app1.exceptions.EmployeeNotFoundException;
 import com.acme.app1.models.Employee;
 import com.acme.app1.services.EmployeeService;
@@ -56,24 +56,27 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/employees")
-    public ResponseEntity<Employee> addEmployee(@Valid @RequestBody Employee employee) {
-        Optional<Employee> employeeDb = employeeService.findByEmail(employee.getEmail());
-
+    public ResponseEntity<Employee> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+        Optional<Employee> employeeDb = employeeService.findByEmail(employeeDto.getEmail());
+        // ne doit pas exister en base de données
         if (!employeeDb.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+        // convertion dto -> model
+        Employee employee = employeeDto.toEmployee();
+
         return new ResponseEntity<>(employeeService.save(employee), HttpStatus.OK);
     }
 
     @PutMapping(value = "/employees/{id}")
-    public Employee updateEmployee(@PathVariable("id") @Min(1) int id, @Valid @RequestBody Employee employee) {
+    public Employee updateEmployee(@PathVariable("id") @Min(1) int id, @Valid @RequestBody EmployeeDto employeeDto) {
         Employee employeeDb = employeeService.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee with " + id + " is not found"));
 
-        employee.setEmail(employeeDb.getEmail());
-        employee.setFirstname(employeeDb.getFirstname());
-        employee.setLastname(employeeDb.getLastname());
+        employeeDb.setEmail(employeeDto.getEmail());
+        employeeDb.setFirstname(employeeDto.getFirstname());
+        employeeDb.setLastname(employeeDto.getLastname());
 
-        return employeeService.save(employee);
+        return employeeService.save(employeeDb);
     }
 
     @DeleteMapping(value = "/employees/{id}")

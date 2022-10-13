@@ -1,6 +1,5 @@
 package com.acme.app1.services;
 
-import com.acme.app1.dto.EmployeeDto;
 import com.acme.app1.models.Employee;
 import com.acme.app1.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
