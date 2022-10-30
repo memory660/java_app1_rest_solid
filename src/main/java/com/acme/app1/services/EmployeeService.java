@@ -50,7 +50,7 @@ public class EmployeeService implements IEmployee {
     }
 
     @Override
-    public Optional<Employee> findById(int id) {
+    public Optional<Employee> findById(long id) {
         return employeeRepo.findById(id);
     }
 
@@ -60,7 +60,7 @@ public class EmployeeService implements IEmployee {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         employeeRepo.deleteById(id);
     }
 

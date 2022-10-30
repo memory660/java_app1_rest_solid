@@ -1,6 +1,7 @@
 package com.acme.app1.dtos;
 
 import com.acme.app1.models.Employee;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 
 @Getter                 // lombok
 @Setter                 // lombok
+@Builder                // va aider à créer une instance d'une entité (pour les tests) en utilisant .builder.
 public class EmployeeDto {
 
     @NotBlank(message = "The email is required.")

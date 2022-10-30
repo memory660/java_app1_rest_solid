@@ -11,10 +11,10 @@ public interface IEmployee {
 
     // List<Employee> getEmployeesX();
 
-    Optional<Employee> findById(int id);
+    Optional<Employee> findById(long id);
     Optional<Employee> findByEmail(String email);
     Employee save(Employee std);
-    void deleteById(int id);
+    void deleteById(long id);
     // custom
     List<Employee> getAllByLastname();
 }

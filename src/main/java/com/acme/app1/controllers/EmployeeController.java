@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Optional;
+
+
 
 /*
 @RestController est utilisé pour créer des API RESTful. Il s'agit d'une combinaison des annotations @Controller et @ResponseBody.
@@ -21,7 +22,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
-
     EmployeeService employeeService;
 
     @Autowired
@@ -58,14 +58,17 @@ public class EmployeeController {
     @PostMapping(value = "/employees")
     public ResponseEntity<Employee> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         Optional<Employee> employeeDb = employeeService.findByEmail(employeeDto.getEmail());
+
         // ne doit pas exister en base de données
         if (!employeeDb.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+
         // convertion dto -> model
         Employee employee = employeeDto.toEmployee();
+        Employee employeeToSave = employeeService.save(employee);
 
-        return new ResponseEntity<>(employeeService.save(employee), HttpStatus.OK);
+        return new ResponseEntity<>(employeeToSave, HttpStatus.OK);
     }
 
     @PutMapping(value = "/employees/{id}")

@@ -11,7 +11,7 @@ import java.util.Optional;
 save(), findAll(), count(), delete()…
  */
 
-public interface EmployeeRepository extends JpaRepository<Employee, Integer>  {   //, ICustomEmployeeRepository {
+public interface EmployeeRepository extends JpaRepository<Employee, Long>  {   //, ICustomEmployeeRepository {
 
     Optional<Employee> findByEmail(String email);
 

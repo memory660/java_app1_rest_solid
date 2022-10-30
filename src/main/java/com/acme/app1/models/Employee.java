@@ -1,9 +1,6 @@
 package com.acme.app1.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.*;
@@ -19,12 +16,13 @@ Par défaut, lombok suit la spécification du bean pour les getters et setters :
 @NoArgsConstructor      // Lombok pour générer un constructeur par défaut sans arguments pour notre classe
 @AllArgsConstructor     // Lombok utilisée pour générer un constructeur tout-arguments.
 @Entity                 // annotation JPA
+@Builder                // va aider à créer une instance d'une entité (pour les tests) en utilisant .builder.
 @Table(name = "employee")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotEmpty(message = "First name is required")
     private String firstname;
